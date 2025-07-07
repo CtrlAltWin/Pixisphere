@@ -22,9 +22,6 @@ const filterSlice = createSlice({
     setMinRating: (state, action) => {
       state.minRating = action.payload;
     },
-    setSelectedStyles: (state, action) => {
-      state.selectedStyles = action.payload;
-    },
     addSelectedStyle: (state, action) => {
       state.selectedStyles = [...state.selectedStyles, action.payload];
     },
@@ -47,8 +44,6 @@ export const {
   setSearchTerm,
   setPriceRange,
   setMinRating,
-  setSelectedStyles,
-  setSelectedTags,
   addSelectedStyle,
   removeUnselectedStyle,
   setSelectedCity,
