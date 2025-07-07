@@ -7,9 +7,9 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const searchTerm = useSelector((store) => store.filters.searchTerm);
   const sortBy = useSelector((store) => store.filters.sortBy);
-  console.log(searchTerm, sortBy);
+
   return (
-    <header className="sticky top-0 bg-white opacity-80 backdrop-blur-sm z-50 px-7 py-2 border-b border-gray-200">
+    <header className="sticky top-0 bg-white opacity-85 backdrop-blur-sm z-50 px-7 py-2 border-b border-gray-200">
       <div className="sm:grid grid-cols-2 py-2">
         <div className="flex items-center gap-3">
           <div className="inline-flex justify-center items-center p-2 bg-gradient-to-r from-purple-700 to-pink-700 text-white rounded-xl">
@@ -44,11 +44,11 @@ const Navbar = () => {
         <div className="relative">
           <ArrowUpDown
             size={20}
-            className="absolute top-3 left-2 text-gray-800"
+            className="absolute top-2.5 right-5 text-gray-800"
           />
           <select
             onChange={(e) => dispatch(setSortBy(e.target.value))}
-            className="border-2 border-purple-200 rounded w-full outline-offset-4 py-2 pl-8"
+            className="border-2 border-purple-200 rounded w-full text-sm outline-offset-4 py-2 pl-2 pr-6"
           >
             <option value="price-asc">Price: Low to High</option>
             <option value="price-desc">Price: High to Low</option>

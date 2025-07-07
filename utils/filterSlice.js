@@ -2,10 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   searchTerm: "",
-  priceRange: [0, 20000],
+  priceRange: 20000,
   minRating: 0,
   selectedStyles: [],
-  selectedTags: [],
   selectedCity: "",
   sortBy: "rating-desc",
 };
@@ -26,8 +25,13 @@ const filterSlice = createSlice({
     setSelectedStyles: (state, action) => {
       state.selectedStyles = action.payload;
     },
-    setSelectedTags: (state, action) => {
-      state.selectedTags = action.payload;
+    addSelectedStyle: (state, action) => {
+      state.selectedStyles = [...state.selectedStyles, action.payload];
+    },
+    removeUnselectedStyle: (state, action) => {
+      state.selectedStyles = state.selectedStyles.filter(
+        (style) => style != action.payload
+      );
     },
     setSelectedCity: (state, action) => {
       state.selectedCity = action.payload;
@@ -45,6 +49,8 @@ export const {
   setMinRating,
   setSelectedStyles,
   setSelectedTags,
+  addSelectedStyle,
+  removeUnselectedStyle,
   setSelectedCity,
   setSortBy,
   resetFilters,
