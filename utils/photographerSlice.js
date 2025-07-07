@@ -1,13 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const photographersSlice = createSlice({
-  name: 'photographers',
-  initialState: {
-    photographers: [],      
-  },
+  name: "photographers",
+  initialState: null,
   reducers: {
     setPhotographers: (state, action) => {
-      state.photographers = action.payload;
+      return action.payload;
     },
   },
 });

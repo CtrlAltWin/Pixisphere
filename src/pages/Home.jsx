@@ -1,9 +1,21 @@
-import React from 'react'
+import React, { useEffect } from "react";
+import { setPhotographers } from "../../utils/photographerSlice";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 
 const Home = () => {
-  return (
-    <div>Home</div>
-  )
-}
+const dispatch = useDispatch();
+  const photographers = useSelector(store=> store.photographers)
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get("http://localhost:3001/photographers");
+      dispatch(setPhotographers(response.data));
+    };
+    fetchData();
+  }, []);
 
-export default Home
+  return <div>Home</div>;
+};
+
+export default Home;

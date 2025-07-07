@@ -3,6 +3,8 @@ import "./index.css";
 import NavbarVisibilityContext from "../utils/NavbarVisibilityContext";
 import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import { Provider } from "react-redux";
+import { store } from "../utils/ReduxStore";
 
 const App = () => {
   const [showNavbar, setShowNavbar] = useState(false);
@@ -22,8 +24,10 @@ const App = () => {
 
   return (
     <NavbarVisibilityContext.Provider value={{ showNavbar }}>
-      <Navbar />
-      <Outlet />
+      <Provider store={store}>
+        <Navbar />
+        <Outlet />
+      </Provider>
     </NavbarVisibilityContext.Provider>
   );
 };

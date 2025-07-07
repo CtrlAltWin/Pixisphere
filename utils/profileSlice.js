@@ -1,16 +1,14 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const profileSlice = createSlice({
-  name: 'profile',
-  initialState: {
-    photographer: null,    
-  },
+  name: "profile",
+  initialState: null,
   reducers: {
     setPhotographer: (state, action) => {
-      state.photographer = action.payload;
+      return action.payload;
     },
     clearPhotographer: (state) => {
-      state.photographer = null;
+      return null;
     },
   },
 });
