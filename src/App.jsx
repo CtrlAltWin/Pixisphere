@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import "./index.css";
 import NavbarVisibilityContext from "../utils/NavbarVisibilityContext";
+import { Outlet } from "react-router-dom";
+import Navbar from "./components/Navbar";
 
 const App = () => {
   const [showNavbar, setShowNavbar] = useState(false);
@@ -19,11 +21,10 @@ const App = () => {
   }, []);
 
   return (
-    <>
-      <NavbarVisibilityContext.Provider value={{ showNavbar }}>
-          <div>Hello world</div>
-      </NavbarVisibilityContext.Provider>
-    </>
+    <NavbarVisibilityContext.Provider value={{ showNavbar }}>
+      <Navbar />
+      <Outlet />
+    </NavbarVisibilityContext.Provider>
   );
 };
 
