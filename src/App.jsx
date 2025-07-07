@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import "./index.css";
 import NavbarVisibilityContext from "../utils/NavbarVisibilityContext";
 import { Outlet } from "react-router-dom";
-import Navbar from "./components/Navbar";
 import { Provider } from "react-redux";
 import { store } from "../utils/ReduxStore";
 
@@ -25,7 +24,6 @@ const App = () => {
   return (
     <NavbarVisibilityContext.Provider value={{ showNavbar }}>
       <Provider store={store}>
-        <Navbar />
         <Outlet />
       </Provider>
     </NavbarVisibilityContext.Provider>
