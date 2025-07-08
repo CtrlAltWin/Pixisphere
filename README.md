@@ -1,12 +1,95 @@
-# React + Vite
+# Pixisphere
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Pixisphere is a photographer listing and portfolio platform built with React.js, Redux Toolkit, Tailwind CSS, and JSON Server.
 
-Currently, two official plugins are available:
+## Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[Live Link](https://pixisphere-pait.onrender.com/)
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React.js
+- Redux Toolkit
+- Tailwind CSS
+- Axios
+- JSON Server (Mock Backend)
+
+---
+## Installation & Setup
+
+### 1️ Clone the Repository
+
+```bash
+git clone https://github.com/CtrlAltWin/CodersMedia.git
+cd CodersMedia/frontend
+```
+
+### 2️ Install Dependencies
+
+```bash
+npm install
+```
+
+### 3️ Run JSON Server  
+
+```bash
+npm install -g json-server@0.17.0
+json-server --watch db.json --port 3001
+```
+
+Replace `http://localhost:5000` with your **deployed backend URL** in production.
+
+### 4️ Create .env file
+
+```bash
+VITE_API_URL=http://localhost:3001
+```
+### 4️ Start the Development Server
+
+```bash
+npm run dev
+```
+
+The app will run on **http://localhost:5173**.
+
+---
+## Features Overview
+### Filtering
+- Users can filter photographers by:
+
+- Search term (name, location, tags)
+
+- Price range
+
+- Minimum rating
+
+- Photography styles
+
+- City
+
+- Sort by rating, price, or name
+  
+---
+
+### Filtering Logic
+- Filters are managed via Redux Slice to maintain a global state.
+
+- Filtering is done on the client side after fetching all photographers initially.
+
+- Separate filter components (checkboxes, sliders, radios) update the Redux state.
+
+- A “Clear Filters” option resets everything to default.
+  
+---
+
+### Debounce
+- The search functionality uses a debounce mechanism (300ms) to avoid unnecessary API calls and provide smoother UX.
+
+---
+
+## ⚠️ Important Note
+
+- The backend (JSON Server) is hosted on **Render’s free tier**, which automatically puts the server to sleep after inactivity.
+- The **first API call may take 40–50 seconds** to respond while the server wakes up.
+- Once active, subsequent requests will be faster.
+
