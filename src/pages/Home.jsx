@@ -9,6 +9,7 @@ import CityFilter from "../components/CityFilter";
 import { useDispatch, useSelector } from "react-redux";
 import { resetFilters } from "../../utils/filterSlice";
 import ShimmerUiHome from "../components/ShimmerUiHome";
+const baseURL = import.meta.env.VITE_API_URL;
 
 const Home = () => {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ const Home = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get("http://localhost:3001/photographers");
+      const response = await axios.get(`${baseURL}/photographers`);
       setPhotographers(response.data);
       setFilteredPhotographers(response.data);
     };

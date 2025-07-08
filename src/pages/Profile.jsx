@@ -8,6 +8,7 @@ import ReviewCard from "../components/ReviewCard";
 import ContactCard from "../components/ContactCard";
 import QuickInfoCard from "../components/QuickInfoCard";
 import ShimmerUiProfile from "../components/shimmerUiProfile";
+const baseURL = import.meta.env.VITE_API_URL;
 
 const Profile = () => {
   const { id } = useParams();
@@ -15,9 +16,7 @@ const Profile = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const responce = await axios.get(
-        `http://localhost:3001/photographers/${id}`
-      );
+      const responce = await axios.get(`${baseURL}/photographers/${id}`);
       setPhotographer(responce.data);
     };
     const timeout = setTimeout(() => {

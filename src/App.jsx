@@ -3,7 +3,7 @@ import "./index.css";
 import NavbarVisibilityContext from "../utils/NavbarVisibilityContext";
 import { Outlet } from "react-router-dom";
 import { Provider } from "react-redux";
-import { store } from "../utils/ReduxStore";
+import { store } from "../utils/reduxStore";
 
 const App = () => {
   const [showNavbar, setShowNavbar] = useState(false);
