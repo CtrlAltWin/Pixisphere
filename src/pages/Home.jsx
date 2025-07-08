@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import CityFilter from "../components/CityFilter";
 import { useDispatch, useSelector } from "react-redux";
 import { resetFilters } from "../../utils/filterSlice";
+import ShimmerUiHome from "../components/ShimmerUiHome";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -30,7 +31,12 @@ const Home = () => {
       setPhotographers(response.data);
       setFilteredPhotographers(response.data);
     };
-    fetchData();
+
+    const timeout = setTimeout(() => {
+      fetchData();
+    }, 300);
+
+    return () => clearTimeout(timeout);
   }, []);
 
   useEffect(() => {
@@ -83,7 +89,7 @@ const Home = () => {
     return () => clearTimeout(timeout);
   }, [filters, photographers]);
 
-  // if (!photographers.length) return <div>shimmer</div>;
+  if (!photographers.length) return <ShimmerUiHome />;
   if (!filteredPhotographers.length)
     return (
       <div className="flex flex-col gap-4 items-center h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50 pt-72">
@@ -114,8 +120,9 @@ const Home = () => {
           </button>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 h-fit gap-4">
-          {filteredPhotographers.map((photographer) => (
+          {filteredPhotographers.map((photographer, idx) => (
             <PhotographerCard
+              key={idx}
               photographer={photographer}
               onViewProfile={() => navigate(`/profile/${photographer.id}`)}
             />

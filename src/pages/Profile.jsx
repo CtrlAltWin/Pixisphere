@@ -7,6 +7,7 @@ import PortfolioCard from "../components/PortfolioCard";
 import ReviewCard from "../components/ReviewCard";
 import ContactCard from "../components/ContactCard";
 import QuickInfoCard from "../components/QuickInfoCard";
+import ShimmerUiProfile from "../components/shimmerUiProfile";
 
 const Profile = () => {
   const { id } = useParams();
@@ -19,16 +20,20 @@ const Profile = () => {
       );
       setPhotographer(responce.data);
     };
-    fetchData();
+    const timeout = setTimeout(() => {
+      fetchData();
+    }, 300);
+    return () => clearTimeout(timeout);
   }, [id]);
-  if (!photographer) return <div></div>;
+
+  if (!photographer) return <ShimmerUiProfile />;
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50">
       <div className="bg-white opacity-80 backdrop-blur-sm font-semibold text-sm border-b border-gray-300 py-6 px-2 sm:px-5 md:px-7">
         <div className="grid grid-cols-2 px-2 sm:px-5 md:px-7">
           <Link to={"/"}>
             {" "}
-            <div className="flex justify-start items-center gap-2">
+            <div className="inline-flex justify-start items-center gap-2 px-4 py-2 hover:bg-gray-100 rounded">
               <ArrowLeft width={15} />
               <p> Back to Browse</p>
             </div>
