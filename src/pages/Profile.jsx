@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ArrowLeft, Heart, Share2 } from "lucide-react";
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import ProfileCard from "../components/ProfileCard";
 import PortfolioCard from "../components/PortfolioCard";
 import ReviewCard from "../components/ReviewCard";
@@ -11,14 +11,19 @@ import ShimmerUiProfile from "../components/shimmerUiProfile";
 const baseURL = import.meta.env.VITE_API_URL;
 
 const Profile = () => {
-  const { id } = useParams();
   const [photographer, setPhotographer] = useState(null);
-
+  const { id } = useParams();
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchData = async () => {
-      const responce = await axios.get(`${baseURL}/photographers/${id}`);
-      setPhotographer(responce.data);
+      try {
+        const responce = await axios.get(`${baseURL}/photographers/${id}`);
+        setPhotographer(responce.data);
+      } catch {
+        navigate("/error");
+      }
     };
+
     const timeout = setTimeout(() => {
       fetchData();
     }, 300);

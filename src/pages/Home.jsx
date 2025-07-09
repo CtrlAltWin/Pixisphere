@@ -12,7 +12,6 @@ import ShimmerUiHome from "../components/ShimmerUiHome";
 const baseURL = import.meta.env.VITE_API_URL;
 
 const Home = () => {
-  const navigate = useNavigate();
   const [photographers, setPhotographers] = useState([]);
   const [filteredPhotographers, setFilteredPhotographers] = useState([]);
   const filters = useSelector((store) => store.filters);
@@ -25,12 +24,17 @@ const Home = () => {
     selectedCity,
     sortBy,
   } = filters;
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get(`${baseURL}/photographers`);
-      setPhotographers(response.data);
-      setFilteredPhotographers(response.data);
+      try {
+        const response = await axios.get(`${baseURL}/photographers`);
+        setPhotographers(response.data);
+        setFilteredPhotographers(response.data);
+      } catch {
+        navigate("/error");
+      }
     };
 
     const timeout = setTimeout(() => {

@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Navbar from "./components/Navbar.jsx";
 import Home from "./pages/Home.jsx";
 import Profile from "./pages/Profile.jsx";
+import ErrorPage from "./pages/ErrorPage.jsx";
 
 const appRouter = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/profile/:id",
         element: <Profile />,
+      },
+      {
+        path: "/error",
+        element: <ErrorPage />,
       },
     ],
   },
